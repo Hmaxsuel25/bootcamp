@@ -2,8 +2,14 @@ name: Generate Snapshot Feature
 on: [push]
 
 jobs:
-  Build-Dockerfile:
-    runs-on: ubuntu-latest
-   steps: 
-     - name:  Checkout source code
-      uses: actions/checkout@v2
+   Build-Dockerfile:
+      runs-on: ubuntu-latest
+      steps:
+         - name: Checkout Source Code
+           uses: actions/checkout@v2
+
+         - name: Install JQ to parse JSON
+           run: sudo apt-get install -y jq
+
+         - name: Building Docker Image using Dockerfile
+         run: docker build -t bootcamp:3.0.0 .
